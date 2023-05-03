@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        :root {
+            --bg: #313338;
+            --presence-offline: #80848e;
+            --presence-online: #23a55a;
+            --presence-dnd: #f23f43;
+            --presence-idle: #efb132;
+        }
+
+        html,
+        body {
+            background-color: var(--bg);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #pfp #discord-avatar {
+            height: 120px;
+            border-radius: 50%;
+        }
+
+        #point {
+            height: 24px;
+            width: 24px;
+            background-color: var(--presence-offline);
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            border: solid 8px var(--bg);
+            transform: translate(85px, -40px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all ease 0.3s;
+        }
+
+        #point.online {
+            background-color: var(--presence-online);
+        }
+
+        #point.offline {
+            background-color: var(--presence-offline);
+        }
+
+        #point.dnd {
+            background-color: var(--presence-dnd);
+        }
+
+        #point.idle {
+            background-color: var(--presence-idle);
+            display: block;
+        }
+
+        #point #symbol {
+            transition: all ease 0.3s;
+        }
+
+        #point.offline #symbol {
+            height: 50%;
+            width: 50%;
+            background-color: var(--bg);
+            border-radius: 50%;
+            margin: auto;
+        }
+
+        #point.online #symbol {
+            background-color: var(--presence-online);
+            height: 0;
+            width: 0;
+        }
+
+        #point.dnd #symbol {
+            width: 60%;
+            height: 20%;
+            background-color: var(--bg);
+            border-radius: 2px;
+        }
+
+        #point.idle #symbol {
+            height: 60%;
+            width: 60%;
+            top: 0px;
+            right: 0px;
+            position: relative;
+            background-color: var(--bg);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pfp">
+        <img id="discord-avatar" src="https://cdn.discordapp.com/avatars/904827515619659796/487ab2d6d67be4a2367d70088efeda80.png?size=2048" alt="">
+        <div id="point" class="offline">
+            <div id="symbol"></div>
+        </div>
+    </div>
+
+    <script>
+        let i = 0;
+        setInterval(() => {
+            const type = ["offline", "online", "dnd", "idle"]
+            document.getElementById("point").classList = type[i]
+            i != type.length - 1 ? i++ : i = 0
+        }, 2000);
+    </script>
+</body>
+
+</html>
